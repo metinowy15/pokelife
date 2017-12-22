@@ -7,31 +7,11 @@
      position: relative;
      margin: 0px;
      padding: 0px;
-     width: 70px; /* sil */
-     height: 60px; /* sil */
      border: 1px solid #999999;
 
-     -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-     border-radius: 3px;
 
  }
 
- .icon-select .selected-box:hover {
-
-     position: relative;
-     margin: 0px;
-     padding: 0px;
-     width: 70px; /* sil */
-     height: 60px; /* sil */
-     border: 1px solid #000000;
-     background-color: #FFFFFF;
-
-     -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-     border-radius: 3px;
-
- }
 
  .icon-select .selected-icon {
 
@@ -58,18 +38,19 @@
  .icon-select .box {
 
      position: absolute;
-     top:0px;
-     left:71px;
+     top:70px;
+     left:0px;
      margin: 0px;
      padding: 0px;
      width: 170px; /* sil */
      height: 170px; /* sil */
-     border: 1px solid #EEEEEE;
+     border: 2px solid grey;
      background-color: #EEEEEE;
 
      -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
      border-radius: 3px;
+
      
      
      overflow:auto;
@@ -115,4 +96,4 @@
 
      overflow:hidden;
      float: left;
- }s
+ }
