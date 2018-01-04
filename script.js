@@ -1,19 +1,3 @@
-// ==UserScript==
-// @name         PokeLifeScript
-// @namespace    http://tampermonkey.net/
-// @version      0.1.6
-// @description  Auto Attack Script
-// @author       brains
-// @match        http://poke-life.net/*
-// @grant        GM_addStyle
-// @grant        GM_getResourceText
-// @require      http://bug7a.github.io/iconselect.js/sample/lib/control/iconselect.js
-// @resource     customCSS  https://raw.githubusercontent.com/krozum/pokelife/master/style.css?v=1
-// ==/UserScript==
-
-var newCSS = GM_getResourceText ("customCSS");
-GM_addStyle (newCSS);
-
 $(document).ready(function() {
     $('body').append('<div id="goDzicz" style="position: fixed; cursor: pointer; top: 0; right: 328px; z-index: 9999"></div>');
     $('body').append('<div id="goButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 10px; font-size: 36px; text-align: center; width: 100px; height: 48px; line-height: 48px; background: '+$('.panel-heading').css('background-color')+'; z-index: 9999">GO</div>');
