@@ -1,3 +1,21 @@
+body {
+    background-color: #d85046;
+}
+
+.panel-primary, .panel-primary>.panel-heading, .awatar, h2, .modal-header {
+    border-color: #0a665e;
+}
+
+.panel-primary>.panel-heading, h2, .modal-header {
+    background-color: #009688;
+}
+
+.panel-primary>.panel-body, .osiagniecie {
+    background-color: #ffffff;
+}
+
+
+
 .icon-select {
   width: 0px;
 }
