@@ -17,16 +17,23 @@ $(document).ready(function() {
                 'horizontalIconNumber':6});
 
             var icons = [];
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/gesty_zagajnik.jpg', 'iconValue':'gesty_zagajnik'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/dolina_wiatrakow.jpg', 'iconValue':'dolina_wiatrakow'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/koronny_szczyt.jpg', 'iconValue':'koronny_szczyt'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/potrojny_staw.jpg', 'iconValue':'potrojny_staw'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/pustynia_lodowa.jpg', 'iconValue':'pustynia_lodowa'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/wielkie_bagna.jpg', 'iconValue':'wielkie_bagna'});
+//            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/gesty_zagajnik.jpg', 'iconValue':'gesty_zagajnik'});
+//            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/dolina_wiatrakow.jpg', 'iconValue':'dolina_wiatrakow'});
+//            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/koronny_szczyt.jpg', 'iconValue':'koronny_szczyt'});
+//            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/potrojny_staw.jpg', 'iconValue':'potrojny_staw'});
+//            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/pustynia_lodowa.jpg', 'iconValue':'pustynia_lodowa'});
+//            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/wielkie_bagna.jpg', 'iconValue':'wielkie_bagna'});
+
+            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/rownina.jpg', 'iconValue':'rownina'});
+            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/puszcza.jpg', 'iconValue':'puszcza'});
+            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/jezioro.jpg', 'iconValue':'jezioro'});
+            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/wulkan.jpg', 'iconValue':'wulkan'});
+            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/ruiny_miasta.jpg', 'iconValue':'ruiny_miasta'});
+            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/park_narodowy.jpg', 'iconValue':'park_narodowy'});
 
             iconSelect.refresh(icons);
 
-            iconSelect.setSelectedIndex(2);
+            iconSelect.setSelectedIndex(1);
 
 
 
