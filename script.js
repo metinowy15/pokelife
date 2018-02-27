@@ -26,9 +26,8 @@ $(document).ready(function() {
 
 
 		$.each($('#pasek_skrotow li'), function(index, item) {
-			if($(item).find('a').attr('href').substring(0,8) == "gra/dzicz"){
 					    icons.push({'iconFilePath':$(item).find('img').attr('src'), 'iconValue':$(item).find('a').attr('href').substring(29)});
-			}
+			
 		});
            
 		
