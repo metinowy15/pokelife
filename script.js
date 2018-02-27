@@ -24,12 +24,14 @@ $(document).ready(function() {
 //            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/pustynia_lodowa.jpg', 'iconValue':'pustynia_lodowa'});
 //            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/wielkie_bagna.jpg', 'iconValue':'wielkie_bagna'});
 
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/rownina.jpg', 'iconValue':'rownina'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/puszcza.jpg', 'iconValue':'puszcza'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/jezioro.jpg', 'iconValue':'jezioro'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/wulkan.jpg', 'iconValue':'wulkan'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/ruiny_miasta.jpg', 'iconValue':'ruiny_miasta'});
-            icons.push({'iconFilePath':'http://poke-life.net/images/ikony/park_narodowy.jpg', 'iconValue':'park_narodowy'});
+
+		$.each($('#pasek_skrotow li'), function(index, item) {
+			if($(item).find('a').attr('href').substring(0,8) == "gra/dzicz"){
+					    icons.push({'iconFilePath':$(item).find('img').attr('src'), 'iconValue':$(item).find('a').attr('href').substring(29)});
+			}
+		});
+           
+		
 
             iconSelect.refresh(icons);
 
