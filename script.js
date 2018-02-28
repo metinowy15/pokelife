@@ -53,7 +53,7 @@ $(document).ready(function() {
         } else if ($('.dzikipokemon-background-normalny').length == 1) {
             if (parseHealth() <= 70) {
                 $('#skrot_leczenie').trigger('click');
-                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=5"]').trigger('click');
+                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=4"]').trigger('click');
             } else {
                 $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"]').trigger('click');
             }
@@ -73,6 +73,6 @@ $(document).ready(function() {
     });
 
     $(document).on("click", '#goAutoButton', function() {
-        window.repeat = setInterval(function() { click(); }, 1000);
+        window.repeat = setInterval(function() { click(); }, 500);
     });
 });
