@@ -47,7 +47,7 @@ $(document).ready(function() {
         } else if ($('.dzikipokemon-background-normalny').length == 1) {
             if ($('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"] span').html() == "0% PŻ") {
                 $('#skrot_leczenie').trigger('click');
-                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"]').trigger('click');
+                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=5"]').trigger('click');
             } else {
                 $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"]').trigger('click');
             }
