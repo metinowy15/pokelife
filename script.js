@@ -66,6 +66,6 @@ $(document).ready(function() {
     });
 
     $(document).on("click", '#goAutoButton', function(){
-        window.repeat = setInterval(function(){ click(); }, 3000);
+        window.repeat = setInterval(function(){ click(); }, 1000);
     });
 });
