@@ -45,11 +45,11 @@ $(document).ready(function() {
             $('#goButton').css('background', 'green');
             clearInterval(window.repeat);
         } else if ($('.dzikipokemon-background-normalny').length == 1) {
-            if ($('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=0"] span').html() == "0% PŻ") {
+            if ($('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"] span').html() == "0% PŻ") {
                 $('#skrot_leczenie').trigger('click');
-                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=0"]').trigger('click');
+                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"]').trigger('click');
             } else {
-                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=0"]').trigger('click');
+                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"]').trigger('click');
             }
         } else if ($('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&zlap_pokemona=greatballe"]').length == 1) {
             $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&zlap_pokemona=greatballe"]').trigger('click');
