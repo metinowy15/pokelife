@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 
     function parseHealth() {
-        var link = $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"] span').html();
+        var link = $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=1"] span').html();
         link = link.replace("% PŻ", "");
         link = Number(link);
         alert(link);
@@ -57,7 +57,7 @@ $(document).ready(function() {
                 $('#skrot_leczenie').trigger('click');
                 $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=4"]').trigger('click');
             } else {
-                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"]').trigger('click');
+                $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=1"]').trigger('click');
             }
         } else if ($('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&zlap_pokemona=greatballe"]').length == 1) {
             $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&zlap_pokemona=greatballe"]').trigger('click');
