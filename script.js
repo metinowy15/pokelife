@@ -43,7 +43,6 @@ $(document).ready(function() {
         var link = $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=1"] span').html();
         link = link.replace("% PŻ", "");
         link = Number(link);
-        alert(link);
         return link;
 
     }
