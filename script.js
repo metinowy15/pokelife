@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $('body').append('<div id="goDzicz" style="position: fixed; cursor: pointer; top: 0; right: 328px; z-index: 9999"></div>');
+    $('body').append('<div id="goDzicz" style="position: fixed; cursor: pointer; top: 0; right: 328px; z-index: 9999"></div>');
     $('body').append('<div id="goButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 10px; font-size: 36px; text-align: center; width: 100px; height: 48px; line-height: 48px; background: ' + $('.panel-heading').css('background-color') + '; z-index: 9999">GO</div>');
     $('body').append('<div id="goAutoButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 122px; font-size: 36px; text-align: center; width: 140px; height: 48px; line-height: 48px; background: ' + $('.panel-heading').css('background-color') + '; z-index: 9999">AutoGO</div>');
 
@@ -39,13 +40,18 @@ $(document).ready(function() {
     iconSelect.setSelectedIndex(1);
 
 
+    function parseHealth() {
+        var link = $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"] span').html();
+        link = link.replace("% PŻ", "");
+        link = Number(link);
+    }
 
     function click() {
         if ($('.dzikipokemon-background-shiny').length == 1) {
             $('#goButton').css('background', 'green');
             clearInterval(window.repeat);
         } else if ($('.dzikipokemon-background-normalny').length == 1) {
-            if ($('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=2"] span').html() == "0% PŻ") {
+            if (parseHealth() <= 70) {
                 $('#skrot_leczenie').trigger('click');
                 $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&wybierz_pokemona=5"]').trigger('click');
             } else {
