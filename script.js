@@ -5,8 +5,8 @@ $(document).ready(function () {
         return defer;
     };
 
-    $('body').append('<div id="setPok" style="position: fixed; cursor: pointer; bottom: 10; right: 120px; z-index: 9999"></div>');
-    $('body').append('<div id="goDzicz" style="position: fixed; cursor: pointer; top: 0; right: 328px; z-index: 9999"></div>');
+    // $('body').append('<div id="setPok" style="position: fixed; cursor: pointer; bottom: 10; right: 120px; z-index: 9999"></div>');
+    $('body').append('<div id="setPok" style="position: fixed; cursor: pointer; top: 0; right: 328px; z-index: 9999"></div>');
     $('body').append('<div id="goButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 10px; font-size: 36px; text-align: center; width: 100px; height: 48px; line-height: 48px; background: ' + $('.panel-heading').css('background-color') + '; z-index: 9999">GO</div>');
     $('body').append('<div id="goAutoButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 122px; font-size: 36px; text-align: center; width: 140px; height: 48px; line-height: 48px; background: ' + $('.panel-heading').css('background-color') + '; z-index: 9999">AutoGO</div>');
 
@@ -30,33 +30,37 @@ $(document).ready(function () {
         });
     var selectPoke =[];
     $.each($('.stan-pokemon'), function (index, item) {
-        selectPoke.push({ 'iconFilePath': $(item).find('img').attr('src'), 'iconValue': "&wybierz_pokemona="+index });
+        let i =0;
+        let src = $(item).find('img').attr('src');
+        if(src!="undefined" && src !=undefined) {
+            i++;
+            selectPoke.push({ 'iconFilePath': $(item).find('img').attr('src'), 'iconValue': "&wybierz_pokemona="+i });}
     });
     console.log(selectPoke);
     iconPoke.refresh(selectPoke)
     iconPoke.setSelectedIndex(1);
    
         
-    iconSelect = new IconSelect("goDzicz",
-        {
-            'selectedIconWidth': 48,
-            'selectedIconHeight': 48,
-            'selectedBoxPadding': 1,
-            'iconsWidth': 48,
-            'iconsHeight': 48,
-            'boxIconSpace': 1,
-            'vectoralIconNumber': 1,
-            'horizontalIconNumber': 6
-        });
-    var icons = [];
-    $.each($('#pasek_skrotow li'), function (index, item) {
-        if ($(item).find('a').attr('href').substring(0, 9) == "gra/dzicz") {
-            icons.push({ 'iconFilePath': $(item).find('img').attr('src'), 'iconValue': $(item).find('a').attr('href').substring(28) });
-        }
-    });
+    // iconSelect = new IconSelect("goDzicz",
+    //     {
+    //         'selectedIconWidth': 48,
+    //         'selectedIconHeight': 48,
+    //         'selectedBoxPadding': 1,
+    //         'iconsWidth': 48,
+    //         'iconsHeight': 48,
+    //         'boxIconSpace': 1,
+    //         'vectoralIconNumber': 1,
+    //         'horizontalIconNumber': 6
+    //     });
+    // var icons = [];
+    // $.each($('#pasek_skrotow li'), function (index, item) {
+    //     if ($(item).find('a').attr('href').substring(0, 9) == "gra/dzicz") {
+    //         icons.push({ 'iconFilePath': $(item).find('img').attr('src'), 'iconValue': $(item).find('a').attr('href').substring(28) });
+    //     }
+    // });
 
-    iconSelect.refresh(icons);
-    iconSelect.setSelectedIndex(1);
+    // iconSelect.refresh(icons);
+    // iconSelect.setSelectedIndex(1);
 
     function click() {
         if (Number($('#sidebar .stan-pokemon:nth-child(2)').find('.progress-bar').attr('aria-valuenow')) < Number($('#min-health').val())) {
