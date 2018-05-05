@@ -38,7 +38,7 @@ $(document).ready(function () {
     });
     console.log(selectPoke);
     iconPoke.refresh(selectPoke)
-    iconPoke.setSelectedIndex(1);
+    iconPoke.setSelectedIndex(3);
               
         
     iconSelect = new IconSelect("goDzicz",
@@ -61,6 +61,11 @@ $(document).ready(function () {
 
     iconSelect.refresh(icons);
     iconSelect.setSelectedIndex(1);
+
+    document.getElementById('setPok').addEventListener('changed', function(e){
+        selectedText = iconSelect.getSelectedValue();
+        console.log(selectedText);
+     });
 
     function click() {
         if (Number($('#sidebar .stan-pokemon:nth-child(2)').find('.progress-bar').attr('aria-valuenow')) < Number($('#min-health').val())) {
