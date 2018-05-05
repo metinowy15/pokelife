@@ -29,8 +29,9 @@ $(document).ready(function () {
             'horizontalIconNumber': 6
         });
     var selectPoke =[];
+    let i =0;
     $.each($('.stan-pokemon'), function (index, item) {
-        let i =0;
+       
         let src = $(item).find('img').attr('src');
         if(src!="undefined" && src !=undefined) {
             i = i+1;
