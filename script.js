@@ -5,7 +5,8 @@ $(document).ready(function () {
         return defer;
     };
 
-     $('body').append('<div id="setPok" style="position: fixed; cursor: pointer; top: 0; right: 428px; z-index: 9999"></div>');
+    $('body').append('<div id="setPok" style="position: fixed; cursor: pointer; top: 0; left: 10px; z-index: 9999"></div>');
+    $('body').append('<div id="setBall" style="position: fixed; cursor: pointer; top: 0; left: 120px; z-index: 9999"></div>');
     $('body').append('<div id="goDzicz" style="position: fixed; cursor: pointer; top: 0; right: 328px; z-index: 9999"></div>');
     $('body').append('<div id="goButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 10px; font-size: 36px; text-align: center; width: 100px; height: 48px; line-height: 48px; background: ' + $('.panel-heading').css('background-color') + '; z-index: 9999">GO</div>');
     $('body').append('<div id="goAutoButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 122px; font-size: 36px; text-align: center; width: 140px; height: 48px; line-height: 48px; background: ' + $('.panel-heading').css('background-color') + '; z-index: 9999">AutoGO</div>');
@@ -14,7 +15,7 @@ $(document).ready(function () {
 
     $('body').append('<div id="settings" style="display: none; width: 600px; height: auto; min-height: 200px; z-index: 9998; background: white; position: fixed; bottom: 0; right: 0; border: 3px solid #159589; padding: 10px; ">Uzywaj nightballi w nocy <input type="checkbox" id="use-nightball"><br> Lecz gdy pierwszy pokemon ma mniej zycia niz <input id="min-health" type="number" value="500"> </div>');
 
-
+    
     var iconSelect;
     var iconPoke;
     iconPoke = new IconSelect("setPok",
@@ -34,10 +35,10 @@ $(document).ready(function () {
        
         let src = $(item).find('img').attr('src');
         if(src!="undefined" && src !=undefined) {
-            i = i+1;
+           
             selectPoke.push({ 'iconFilePath': $(item).find('img').attr('src'), 'iconValue': "&wybierz_pokemona="+i });}
-    });
-    console.log(selectPoke);
+            i = i+1;
+        });
     iconPoke.refresh(selectPoke)
     iconPoke.setSelectedIndex(3);
               
@@ -63,6 +64,30 @@ $(document).ready(function () {
     iconSelect.refresh(icons);
     iconSelect.setSelectedIndex(1);
 
+    var iconBall;
+    iconBall = new IconSelect("setBall",
+        {
+            'selectedIconWidth': 48,
+            'selectedIconHeight': 48,
+            'selectedBoxPadding': 1,
+            'iconsWidth': 48,
+            'iconsHeight': 48,
+            'boxIconSpace': 1,
+            'vectoralIconNumber': 1,
+            'horizontalIconNumber': 6
+        });
+    var selectBall =[
+        {'iconFilePath':"images/pokesklep/pokeballe.jpg",'iconValue':'&zlap_pokemona=pokeballe'},
+        {'iconFilePath':"images/pokesklep/greatballe.jpg",'iconValue':'&zlap_pokemona=greatballe'},
+        {'iconFilePath':"images/pokesklep/nestballe.jpg",'iconValue':'&zlap_pokemona=nestballe'},
+        {'iconFilePath':"images/pokesklep/friendballe.jpg",'iconValue':'&zlap_pokemona=friendballe'},
+        {'iconFilePath':"images/pokesklep/nightballe.jpg",'iconValue':'&zlap_pokemona=nightballe'},
+        {'iconFilePath':"images/pokesklep/cherishballe.jpg",'iconValue':'&zlap_pokemona=cherishballe'},
+        {'iconFilePath':"images/pokesklep/lureballe.jpg",'iconValue':'&zlap_pokemona=lureballe'}];
+
+    iconBall.refresh(selectBall);
+    iconBall.setSelectedIndex(1);
+
     function click() {
         if (Number($('#sidebar .stan-pokemon:nth-child(2)').find('.progress-bar').attr('aria-valuenow')) < Number($('#min-health').val())) {
             console.log('lecze sie');
@@ -76,9 +101,8 @@ $(document).ready(function () {
                 window.auto = false;
                 $('#goAutoButton').html('AutoGO');
             } else if ($('.dzikipokemon-background-normalny').length == 1) {
-                console.log(iconPoke.getSelectedValue());
                 $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + iconPoke.getSelectedValue() + '"]').trigger('click');
-            } else if ($('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&zlap_pokemona=greatballe"]').length == 1) {
+            } else if ($('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + iconBall.getSelectedValue() + '"]').length == 1) {
 
                 if ($('#use-nightball').val()) {
                     var d = new Date();
@@ -87,11 +111,11 @@ $(document).ready(function () {
                         $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&zlap_pokemona=nightballe"]').trigger('click');
                         console.log('rzucam nightballa');
                     } else {
-                        $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&zlap_pokemona=greatballe"]').trigger('click');
+                        $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + iconBall.getSelectedValue() + '"]').trigger('click');
                         console.log('rzucam greatballa');
                     }
                 } else {
-                    $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&zlap_pokemona=greatballe"]').trigger('click');
+                    $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + iconBall.getSelectedValue() + '"]').trigger('click');
                     console.log('rzucam greatballa');
                 }
             } else {
