@@ -1,3 +1,7 @@
+
+var iconSelect;
+var iconPoke;
+var iconBall;
 $(document).ready(function () {
     $.wait = function (ms) {
         var defer = $.Deferred();
@@ -6,87 +10,19 @@ $(document).ready(function () {
     };
 
     $('body').append('<div id="setPok" style="position: fixed; cursor: pointer; top: 0; left: 10px; z-index: 9999"></div>');
-    $('body').append('<div id="setBall" style="position: fixed; cursor: pointer; top: 0; left: 120px; z-index: 9999"></div>');
+    $('body').append('<div id="setBall" style="position: fixed; cursor: pointer; top: 0; left: 60px; z-index: 9999"></div>');
+
     $('body').append('<div id="goDzicz" style="position: fixed; cursor: pointer; top: 0; right: 328px; z-index: 9999"></div>');
     $('body').append('<div id="goButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 10px; font-size: 36px; text-align: center; width: 100px; height: 48px; line-height: 48px; background: ' + $('.panel-heading').css('background-color') + '; z-index: 9999">GO</div>');
     $('body').append('<div id="goAutoButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 122px; font-size: 36px; text-align: center; width: 140px; height: 48px; line-height: 48px; background: ' + $('.panel-heading').css('background-color') + '; z-index: 9999">AutoGO</div>');
 
     $('body').append('<div id="goSettings" style="border-radius: 4px;position: fixed;cursor: pointer;bottom: 10px;right: 10px;font-size: 19px;text-align: center;width: 30px;height: 30px;line-height: 35px;background: rgb(21, 149, 137);z-index: 9999;"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></div>');
-
     $('body').append('<div id="settings" style="display: none; width: 600px; height: auto; min-height: 200px; z-index: 9998; background: white; position: fixed; bottom: 0; right: 0; border: 3px solid #159589; padding: 10px; ">Uzywaj nightballi w nocy <input type="checkbox" id="use-nightball"><br> Lecz gdy pierwszy pokemon ma mniej zycia niz <input id="min-health" type="number" value="500"> </div>');
 
-    
-    var iconSelect;
-    var iconPoke;
-    iconPoke = new IconSelect("setPok",
-        {
-            'selectedIconWidth': 48,
-            'selectedIconHeight': 48,
-            'selectedBoxPadding': 1,
-            'iconsWidth': 48,
-            'iconsHeight': 48,
-            'boxIconSpace': 1,
-            'vectoralIconNumber': 1,
-            'horizontalIconNumber': 6
-        });
-    var selectPoke =[];
-    let i =0;
-    $.each($('.stan-pokemon'), function (index, item) {
-       
-        let src = $(item).find('img').attr('src');
-        if(src!="undefined" && src !=undefined) {
-           
-            selectPoke.push({ 'iconFilePath': $(item).find('img').attr('src'), 'iconValue': "&wybierz_pokemona="+i });}
-            i = i+1;
-        });
-    iconPoke.refresh(selectPoke)
-    iconPoke.setSelectedIndex(3);
-              
-        
-    iconSelect = new IconSelect("goDzicz",
-        {
-            'selectedIconWidth': 48,
-            'selectedIconHeight': 48,
-            'selectedBoxPadding': 1,
-            'iconsWidth': 48,
-            'iconsHeight': 48,
-            'boxIconSpace': 1,
-            'vectoralIconNumber': 1,
-            'horizontalIconNumber': 6
-        });
-    var icons = [];
-    $.each($('#pasek_skrotow li'), function (index, item) {
-        if ($(item).find('a').attr('href').substring(0, 9) == "gra/dzicz") {
-            icons.push({ 'iconFilePath': $(item).find('img').attr('src'), 'iconValue': $(item).find('a').attr('href').substring(28) });
-        }
-    });
 
-    iconSelect.refresh(icons);
-    iconSelect.setSelectedIndex(1);
-
-    var iconBall;
-    iconBall = new IconSelect("setBall",
-        {
-            'selectedIconWidth': 48,
-            'selectedIconHeight': 48,
-            'selectedBoxPadding': 1,
-            'iconsWidth': 48,
-            'iconsHeight': 48,
-            'boxIconSpace': 1,
-            'vectoralIconNumber': 1,
-            'horizontalIconNumber': 6
-        });
-    var selectBall =[
-        {'iconFilePath':"images/pokesklep/pokeballe.jpg",'iconValue':'&zlap_pokemona=pokeballe'},
-        {'iconFilePath':"images/pokesklep/greatballe.jpg",'iconValue':'&zlap_pokemona=greatballe'},
-        {'iconFilePath':"images/pokesklep/nestballe.jpg",'iconValue':'&zlap_pokemona=nestballe'},
-        {'iconFilePath':"images/pokesklep/friendballe.jpg",'iconValue':'&zlap_pokemona=friendballe'},
-        {'iconFilePath':"images/pokesklep/nightballe.jpg",'iconValue':'&zlap_pokemona=nightballe'},
-        {'iconFilePath':"images/pokesklep/cherishballe.jpg",'iconValue':'&zlap_pokemona=cherishballe'},
-        {'iconFilePath':"images/pokesklep/lureballe.jpg",'iconValue':'&zlap_pokemona=lureballe'}];
-
-    iconBall.refresh(selectBall);
-    iconBall.setSelectedIndex(1);
+    initPokemonIcons();
+    initLocationIcons();
+    initBallIcons();
 
     function click() {
         if (Number($('#sidebar .stan-pokemon:nth-child(2)').find('.progress-bar').attr('aria-valuenow')) < Number($('#min-health').val())) {
@@ -226,3 +162,79 @@ $(document).ready(function () {
     });
 
 });
+
+function initPokemonIcons() {
+    iconPoke = new IconSelect("setPok",
+        {
+            'selectedIconWidth': 48,
+            'selectedIconHeight': 48,
+            'selectedBoxPadding': 1,
+            'iconsWidth': 48,
+            'iconsHeight': 48,
+            'boxIconSpace': 1,
+            'vectoralIconNumber': 1,
+            'horizontalIconNumber': 6
+        });
+    var selectPoke = [];
+    let i = 0;
+    $.each($('.stan-pokemon'), function (index, item) {
+
+        let src = $(item).find('img').attr('src');
+        if (src != "undefined" && src != undefined) {
+            selectPoke.push({ 'iconFilePath': $(item).find('img').attr('src'), 'iconValue': "&wybierz_pokemona=" + i });
+            i = i + 1;
+        }
+
+    });
+    iconPoke.refresh(selectPoke)
+    iconPoke.setSelectedIndex(3);
+}
+
+function initLocationIcons() {
+    iconSelect = new IconSelect("goDzicz",
+        {
+            'selectedIconWidth': 48,
+            'selectedIconHeight': 48,
+            'selectedBoxPadding': 1,
+            'iconsWidth': 48,
+            'iconsHeight': 48,
+            'boxIconSpace': 1,
+            'vectoralIconNumber': 1,
+            'horizontalIconNumber': 6
+        });
+    var icons = [];
+    $.each($('#pasek_skrotow li'), function (index, item) {
+        if ($(item).find('a').attr('href').substring(0, 9) == "gra/dzicz") {
+            icons.push({ 'iconFilePath': $(item).find('img').attr('src'), 'iconValue': $(item).find('a').attr('href').substring(28) });
+        }
+    });
+
+    iconSelect.refresh(icons);
+    iconSelect.setSelectedIndex(1);
+}
+
+function initBallIcons() {
+    iconBall = new IconSelect("setBall",
+        {
+            'selectedIconWidth': 48,
+            'selectedIconHeight': 48,
+            'selectedBoxPadding': 1,
+            'iconsWidth': 48,
+            'iconsHeight': 48,
+            'boxIconSpace': 1,
+            'vectoralIconNumber': 1,
+            'horizontalIconNumber': 6
+        });
+    var selectBall = [
+        { 'iconFilePath': "images/pokesklep/pokeballe.jpg", 'iconValue': '&zlap_pokemona=pokeballe' },
+        { 'iconFilePath': "images/pokesklep/greatballe.jpg", 'iconValue': '&zlap_pokemona=greatballe' },
+        { 'iconFilePath': "images/pokesklep/nestballe.jpg", 'iconValue': '&zlap_pokemona=nestballe' },
+        { 'iconFilePath': "images/pokesklep/friendballe.jpg", 'iconValue': '&zlap_pokemona=friendballe' },
+        { 'iconFilePath': "images/pokesklep/nightballe.jpg", 'iconValue': '&zlap_pokemona=nightballe' },
+        { 'iconFilePath': "images/pokesklep/cherishballe.jpg", 'iconValue': '&zlap_pokemona=cherishballe' },
+        { 'iconFilePath': "images/pokesklep/lureballe.jpg", 'iconValue': '&zlap_pokemona=lureballe' }];
+
+    iconBall.refresh(selectBall);
+    iconBall.setSelectedIndex(1);
+
+}
