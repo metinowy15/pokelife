@@ -39,7 +39,7 @@ $(document).ready(function () {
     console.log(selectPoke);
     iconPoke.refresh(selectPoke)
     iconPoke.setSelectedIndex(1);
-   
+              
         
     iconSelect = new IconSelect("goDzicz",
         {
@@ -75,7 +75,7 @@ $(document).ready(function () {
                 window.auto = false;
                 $('#goAutoButton').html('AutoGO');
             } else if ($('.dzikipokemon-background-normalny').length == 1) {
-                console.log('wybieram pokemona 4');
+                console.log(iconPoke.getSelectedValue());
                 $('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + iconPoke.getSelectedValue() + '"]').trigger('click');
             } else if ($('button[href="dzicz.php?miejsce=' + iconSelect.getSelectedValue() + '&zlap_pokemona=greatballe"]').length == 1) {
 
