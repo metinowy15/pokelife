@@ -62,9 +62,9 @@ $(document).ready(function () {
     iconSelect.refresh(icons);
     iconSelect.setSelectedIndex(1);
 
-    document.getElementById('setPok').addEventListener('changed', function(e){
+    document.getElementById('setPok').addEventListener('changed', function(e,data){
         selectedText = iconSelect.getSelectedValue();
-        console.log(e);
+        console.log(data);
      });
 
     function click() {
