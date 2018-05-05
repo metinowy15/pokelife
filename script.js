@@ -64,7 +64,7 @@ $(document).ready(function () {
 
     document.getElementById('setPok').addEventListener('changed', function(e){
         selectedText = iconSelect.getSelectedValue();
-        console.log(selectedText);
+        console.log(e);
      });
 
     function click() {
