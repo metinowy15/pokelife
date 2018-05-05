@@ -9,6 +9,10 @@ $(document).ready(function() {
     $('body').append('<div id="goButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 10px; font-size: 36px; text-align: center; width: 100px; height: 48px; line-height: 48px; background: '+$('.panel-heading').css('background-color')+'; z-index: 9999">GO</div>');
     $('body').append('<div id="goAutoButton" style="border-radius: 4px;position: fixed; cursor: pointer; top: 5px; right: 122px; font-size: 36px; text-align: center; width: 140px; height: 48px; line-height: 48px; background: '+$('.panel-heading').css('background-color')+'; z-index: 9999">AutoGO</div>');
 
+$('body').append('<div id="goSettings" style="border-radius: 4px;position: fixed;cursor: pointer;bottom: 10px;right: 10px;font-size: 19px;text-align: center;width: 30px;height: 30px;line-height: 35px;background: rgb(21, 149, 137);z-index: 9999;"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></div>');
+
+$('body').append('<div id="settings" style="display: none; width: 600px; height: auto; min-height: 200px; z-index: 9998; background: white; position: fixed; bottom: 0; right: 0; border: 3px solid #159589; padding: 10px; ">Uzywaj nightballi w nocy <input type="checkbox" id="use-nightball"><br> Lecz gdy pierwszy pokemon ma mniej zycia niz <input id="min-health" type="number" value="500"> </div>');
+
 
     var iconSelect;
 
@@ -33,23 +37,36 @@ $(document).ready(function() {
     iconSelect.setSelectedIndex(1);
 
     function click(){
+if(Number($('#sidebar .stan-pokemon:nth-child(2)').find('.progress-bar').attr('aria-valuenow')) < Number($('#min-health').val())){
+                    console.log('lecze sie');
+                    $('#skrot_leczenie').trigger('click');
+setTimeout(function(){click();}, 100);
+                } else {
+
             if($('.dzikipokemon-background-shiny').length == 1){
                 console.log('spotkalem shiny');
                 $('#goButton').css('background', 'green');
                 window.auto = false;
                 $('#goAutoButton').html('AutoGO');
             } else if($('.dzikipokemon-background-normalny').length == 1){
-                if($('#sidebar .stan-pokemon:nth-child(2)').find('.progress-bar').attr('aria-valuenow') < 500){
-                    console.log('lecze sie');
-                    $('#skrot_leczenie').trigger('click');
-                    $('button[href="dzicz.php?miejsce='+iconSelect.getSelectedValue()+'&wybierz_pokemona=5"]').trigger('click');
-                } else {
-                    console.log('wybieram pokemona 6');
-                    $('button[href="dzicz.php?miejsce='+iconSelect.getSelectedValue()+'&wybierz_pokemona=3"]').trigger('click');
-                }
+                console.log('wybieram pokemona 4');
+		$('button[href="dzicz.php?miejsce='+iconSelect.getSelectedValue()+'&wybierz_pokemona=4"]').trigger('click');
             } else if ($('button[href="dzicz.php?miejsce='+iconSelect.getSelectedValue()+'&zlap_pokemona=greatballe"]').length == 1){
-                console.log('rzucam greatballa');
+                
+		if($('#use-nightball').val()){
+		  var d = new Date();
+    var h = d.getHours();
+if(h > 22 || h < 6){
+		$('button[href="dzicz.php?miejsce='+iconSelect.getSelectedValue()+'&zlap_pokemona=nightballe"]').trigger('click');
+console.log('rzucam nightballa');
+} else {
+$('button[href="dzicz.php?miejsce='+iconSelect.getSelectedValue()+'&zlap_pokemona=greatballe"]').trigger('click');
+console.log('rzucam greatballa');
+}
+} else {
                 $('button[href="dzicz.php?miejsce='+iconSelect.getSelectedValue()+'&zlap_pokemona=greatballe"]').trigger('click');
+console.log('rzucam greatballa');
+}
             } else {
                 if($('.progress-stan2 div').attr('aria-valuenow') < 5){
                     console.log('przerywam autoGo');
@@ -60,6 +77,7 @@ $(document).ready(function() {
                     $('#pasek_skrotow a[href="gra/dzicz.php?poluj&miejsce='+iconSelect.getSelectedValue()+'"] img').trigger('click');
                 }
             }
+}
     }
 
     $(document).off("click", "nav a");
@@ -78,7 +96,7 @@ $(document).ready(function() {
             //$("#glowne_okno").html(loadingbar);
             $("#glowne_okno").load($(this).attr('href'), function(){
                if(window.auto){
-                   setTimeout(function(){click();}, 300);
+                   setTimeout(function(){click();}, 150);
                }
             });
 
@@ -123,7 +141,7 @@ $(document).ready(function() {
         $("#glowne_okno").load('gra/'+$(this).attr('href'), {limit: 20},
         function (responseText, textStatus, req) {
             if(window.auto){
-                setTimeout(function(){click();}, 300);
+                setTimeout(function(){click();}, 150);
             }
             if (textStatus == "error") {
                 $("#glowne_okno").html(responseText);
@@ -134,6 +152,14 @@ $(document).ready(function() {
 
     $(document).on("click", '#goButton', function(){
         click();
+    });
+
+    $(document).on("click", '#goSettings', function(){
+        if($('#settings').css('display') == "none"){
+	$('#settings').css('display', "block");
+} else {
+	$('#settings').css('display', "none");
+}
     });
 
     window.auto = false;
