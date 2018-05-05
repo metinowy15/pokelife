@@ -63,7 +63,7 @@ $(document).ready(function () {
     // iconSelect.setSelectedIndex(1);
 
     document.getElementById('setPok').addEventListener('changed', function(e){
-        selectedText = iconSelect.getSelectedValue();
+        selectedText = iconPoke.getSelectedValue();
         console.log(e);
      });
 
